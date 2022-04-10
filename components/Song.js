@@ -10,12 +10,12 @@ function Song({ order, track }) {
     const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState)
 
     const playSong = () => {
-        setCurrentTrackId(track.track.id);
-        setIsPlaying(true);
+        setCurrentTrackId(track.track.id)
+        setIsPlaying(true)
         spotifyApi.play({
             uris: [track.track.uri],
-        });
-    };
+        })
+    }
 
     return (
         <div className='grid grid-cols-2 text-[#929292] hover:text-white hover:bg-[#2b2d30] rounded-md mt-5 cursor-pointer' onClick={playSong}>

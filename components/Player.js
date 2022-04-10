@@ -32,7 +32,6 @@ function Player() {
     const fetchCurrentSong = () => {
         if (!songInfo) {
             SpotifyAPI.getMyCurrentPlayingTrack().then((data) => {
-                console.log('Now playing: ', data.body?.item)
                 setCurrentTrackId(data.body?.item?.id)
 
                 SpotifyAPI.getMyCurrentPlaybackState().then((data) => {
