@@ -10,13 +10,15 @@ import {
     HeartIcon,
     RssIcon
 } from '@heroicons/react/outline'
+import { useRecoilState } from 'recoil'
+import { playlistIdState } from '../atoms/playlistAtom'
 
 function Sidebar() {
 
     const spotifyApi = useSpotify()
     const { data: session, status } = useSession()
     const [playlists, setPlaylists] = useState([])
-    const [playlistId, setPlaylistId] = useState(null)
+    const [playlistId, setPlaylistId] = useRecoilState(playlistIdState)
 
     useEffect(() => {
         if (spotifyApi.getAccessToken()) {
@@ -74,7 +76,7 @@ function Sidebar() {
                 {/* Playlists */}
                 {playlists.map(playlist => (
                     <p key={playlist.id}
-                        onClick={setPlaylistId(playlist.id)}
+                        onClick={() => setPlaylistId(playlist.id)}
                         className='cursor-pointer hover:text-white'>
                         {playlist.name}
                     </p>
